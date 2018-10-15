@@ -9,7 +9,7 @@
 // | Author: 麦当苗儿 <zuojiazi@vip.qq.com> <http://www.zjzit.cn>
 // +----------------------------------------------------------------------
 namespace think;
- 
+
 class AjaxPage{
     public $firstRow; // 起始行数
     public $listRows; // 列表每页显示行数

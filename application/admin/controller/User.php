@@ -56,7 +56,6 @@ class User extends Base {
         {
             $first_leader = DB::query("select first_leader,count(1) as count  from __PREFIX__users where first_leader in(".  implode(',', $user_id_arr).")  group by first_leader");
             $first_leader = convert_arr_key($first_leader,'first_leader');
-            
             $second_leader = DB::query("select second_leader,count(1) as count  from __PREFIX__users where second_leader in(".  implode(',', $user_id_arr).")  group by second_leader");
             $second_leader = convert_arr_key($second_leader,'second_leader');            
             

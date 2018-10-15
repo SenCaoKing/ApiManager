@@ -26,14 +26,15 @@
         <div class="mDiv">
             <div class="ftitle">
                 <h3>会员列表</h3>
+                <!-- 会员总记录数 -->
                 <h5>(共<span id="user_count"></span>条记录)</h5>
             </div>
             <div title="刷新数据" class="pReload"><i class="fa fa-refresh"></i></div>
             <form class="navbar-form form-inline" method="post"  id="search-form2">
-                <input type="hidden" name="order_by" value="user_id">
-                <input type="hidden" name="sort" value="desc">
-                <input type="hidden" name="account" value="" id="account" />
-                <input type="hidden" name="nickname" value="" id="nickname" />
+                <input type="hidden" name="order_by" value="user_id"> <!-- 排序字段 -->
+                <input type="hidden" name="sort" value="desc"> <!-- 降序 -->
+                <input type="hidden" name="account" value="" id="account" /> <!-- 会员账户 -->
+                <input type="hidden" name="nickname" value="" id="nickname" /> <!-- 会员昵称 -->
                 <input type="hidden" name="user_ids" value="" id="user_ids" />
                 <!--分销时查看下级人数都有哪些-->
                 <input type="hidden" name="first_leader" value="{$_GET['first_leader']}">
@@ -140,6 +141,7 @@
             </div>
             <div style="clear:both"></div>
         </div>
+        <!-- 会员列表div -->
         <div class="bDiv" style="height: auto;" id="ajax_return">
         </div>
     </div>
@@ -149,6 +151,7 @@
         // 点击刷新数据
         var ssort = 'sdesc';
         var on_sclick = 0;
+        // 会员列表 表头鼠标移入、移出js效果
         $('.hDivBox > table>thead>tr>th').hover(
             function () {
                 if(typeof($(this).attr('abbr')) == "undefined"){
@@ -187,6 +190,7 @@
                     on_sclick = 0;
             }
         );
+        // 会员列表 表头点击js效果
         $('.hDivBox > table>thead>tr>th').click(function(){
             if(typeof($(this).attr('abbr')) == "undefined"){
                 return false;
@@ -215,26 +219,28 @@
             sort($(this).attr('abbr'));
         });
 
+        // 刷新数据 js效果
         $('.fa-refresh').click(function(){
             location.href = location.href;
         });
+        // ajax抓取列表页面
         ajax_get_table('search-form2',1);
 
     });
     //选中全部
     $('.hDivBox .sign').click(function(){
         var sign = $('#flexigrid > table>tbody>tr');
-       if($(this).parent().hasClass('trSelected')){
-           sign.each(function(){
-               $(this).removeClass('trSelected');
-           });
-           $(this).parent().removeClass('trSelected');
-       }else{
-           sign.each(function(){
-               $(this).addClass('trSelected');
-           });
-           $(this).parent().addClass('trSelected');
-       }
+        if($(this).parent().hasClass('trSelected')){
+            sign.each(function(){
+                $(this).removeClass('trSelected');
+            });
+            $(this).parent().removeClass('trSelected');
+        }else{
+            sign.each(function(){
+                $(this).addClass('trSelected');
+            });
+            $(this).parent().addClass('trSelected');
+        }
     })
 
     // ajax 抓取页面

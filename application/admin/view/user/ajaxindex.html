@@ -77,7 +77,7 @@
         $('#flexigrid >table>tbody>tr').click(function(){
             $(this).toggleClass('trSelected');
         });
-        $('#user_count').empty().html("{$pager->totalRows}");
+        $('#user_count').empty().html("{$pager->totalRows}"); // 会员总数
     });
     function delfun(obj) {
         // 删除按钮
