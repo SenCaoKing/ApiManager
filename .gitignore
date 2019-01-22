@@ -1,7 +1,3 @@
 .idea
-composer.json
-*.log
-/runtime
-/application/database.php
-/application/database.php_read
-/public/upload/goods
+/readme.txt
+/vendor
