@@ -20,12 +20,12 @@
         <!-- 左侧导航 -->
         <div class="col-md-3" style="position: relative; background: #f5f5f5; padding: 10px; height: 100%; border-right: #ddd 1px solid; overflow-y: auto;">
             <div style="height: 50px; font-size: 30px; line-height: 50px;">
-                <a style="color: #000000; text-shadow: 1px 0px 1px #666; text-decoration: none;" href="">
+                <a style="color: #000000; text-shadow: 1px 0px 1px #666; text-decoration: none;" href="<?php echo U()?>">
                     <span class="glyphicon glyphicon-random" aria-hidden="true" style="width: 40px;"></span>&nbsp;&nbsp;
-                    <span style="position: relative; top: -3px;">API Manager <span style="font-size: 12px; position: relative; top: -13px;">&nbsp; </span></span>
+                    <span style="position: relative; top: -3px;">API Manager <span style="font-size: 12px; position: relative; top: -13px;">&nbsp;<?php echo C('version->no')?></span>
+                    </span>
                 </a>
             </div>
-
             <?php
             include('./MinPHP/run/menu.php');
             ?>
@@ -34,10 +34,10 @@
         <div class="col-md-9" style="height: 100%; background: white; margin: 0px; overflow-y: auto; padding: 0px;">
             <!-- 顶部导航 start -->
             <div class="textshadow" style="font-size: 16px; width: 100%; height: 60px; line-height: 60px; padding: 0 16px 0 16px; border-bottom: #ddd 1px solid;">
-                <span> <a href="">Home</a>  </span>
+                <span> <a href="<?php echo U() ?>">Home</a>   </span>
                 <span style="float: right;">
                     <?php
-                    echo '退出';
+                    echo '<a href="?act=login&type=quit">退出&nbsp;&nbsp;<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a>';
 
 
 
