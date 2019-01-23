@@ -26,10 +26,12 @@ switch($act){
         $menu = ' - ';
         $file = './MinPHP/run/info.php';
         break;
-        
+
     default:
         $menu = ' - 欢迎';
         $file = './MinPHP/run/hello.php';
         break;
 }
 include './MinPHP/run/main.php';
+
+
