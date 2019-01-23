@@ -37,22 +37,22 @@
                 <span> <a href="<?php echo U() ?>">Home</a>   </span>
                 <span style="float: right;">
                     <?php
-                    echo '<a href="?act=login&type=quit">退出&nbsp;&nbsp;<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a>';
-
-
-
-                    echo '<a href="?act=login">登录&nbsp;&nbsp;<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></a>';
+                    if(is_login()){
+                        echo '<a href="?act=login&type=quit">退出&nbsp;&nbsp;<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a>';
+                    }else{
+                        echo '<a href="?act=login">登录&nbsp;&nbsp;<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></a>';
+                    }
                     ?>
                 </span>
             </div>
             <!-- 顶部导航 end -->
             <!-- 主窗口 start -->
             <div style="padding: 16px;">
-
-
-
-
-
+                <?php
+                if(!empty($file)){
+                    include($file);
+                }
+                ?>
             </div>
             <!-- 主窗口 end -->
         </div>

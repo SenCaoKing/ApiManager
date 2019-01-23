@@ -5,11 +5,27 @@ $type = I($_GET['type']);
 // 登录
 if($type == 'do'){
     $_VAL = I($_POST);
-    
+    $login_name = $_VAL['name'];
+    $login_pwd = $_VAL['pwd'];
+    $sql = "select * from user where login_name = '{$login_name}' and login_pwd = '{$login_pwd}' and isdel = '0'";
+    $info = find($sql);
+    if(!empty($info)){
+        session('id', $info['id']); // 用户id
+        session('login_name', $info['login_name']); // 登录名
+        session('issupper', $info['issuper']); // 是否为超级管理员
+        $time = time();
+        $sql = "update user set last_time = '{$time}' where id = {$info['id']}";
+        update($sql);
+        go(U());
+    }else{
+        echo '<div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> 登录失败，账号或密码错误</div>';
+    }
+    // 退出
+}else if($type == 'quit'){
+    session('login_name', '');
+    session('issupper', '');
+    go(U());
 }
-
-
-
 ?>
 <div style="border: 1px solid #ddd;">
     <div style="background: #f5f5f5; padding: 20px; position: relative;">
