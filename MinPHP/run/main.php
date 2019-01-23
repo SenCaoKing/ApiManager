@@ -15,39 +15,39 @@
     <link href="./MinPHP/res/style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body style="height: 100%;">
-<div class="container-fluid" style="">
-    <div class="row" style="">
+<div class="container-fluid" style="background: white; height: 100%;">
+    <div class="row" style="height: 100%;">
         <!-- 左侧导航 -->
-        <div class="col-md-3" style="">
-            <div style="">
-                <a style="" href="">
-                    <span class="" aria-hidden="true" style=""></span>&nbsp;
-                    <span style="">API Manager <span style="">&nbsp;</span></span>
+        <div class="col-md-3" style="position: relative; background: #f5f5f5; padding: 10px; height: 100%; border-right: #ddd 1px solid; overflow-y: auto;">
+            <div style="height: 50px; font-size: 30px; line-height: 50px;">
+                <a style="color: #000000; text-shadow: 1px 0px 1px #666; text-decoration: none;" href="">
+                    <span class="glyphicon glyphicon-random" aria-hidden="true" style="width: 40px;"></span>&nbsp;&nbsp;
+                    <span style="position: relative; top: -3px;">API Manager <span style="font-size: 12px; position: relative; top: -13px;">&nbsp; </span></span>
                 </a>
             </div>
 
-
-
-
+            <?php
+            include('./MinPHP/run/menu.php');
+            ?>
         </div>
         <!-- 左侧导航 end -->
-        <div class="col-md-9" style="">
+        <div class="col-md-9" style="height: 100%; background: white; margin: 0px; overflow-y: auto; padding: 0px;">
             <!-- 顶部导航 start -->
-            <div class="textshadow" style="">
-                <span> <a href="">Home</a></span>
-                <span style="">
+            <div class="textshadow" style="font-size: 16px; width: 100%; height: 60px; line-height: 60px; padding: 0 16px 0 16px; border-bottom: #ddd 1px solid;">
+                <span> <a href="">Home</a>  </span>
+                <span style="float: right;">
+                    <?php
+                    echo '退出';
 
 
 
-
-
-
-
+                    echo '登录';
+                    ?>
                 </span>
             </div>
             <!-- 顶部导航 end -->
             <!-- 主窗口 start -->
-            <div style="">
+            <div style="padding: 16px;">
 
 
 
