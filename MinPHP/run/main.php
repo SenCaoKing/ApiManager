@@ -41,7 +41,7 @@
 
 
 
-                    echo '登录';
+                    echo '<a href="?act=login">登录&nbsp;&nbsp;<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></a>';
                     ?>
                 </span>
             </div>
