@@ -1,4 +1,17 @@
 -- ----------------------------
+-- Table structure for `cate`
+-- ----------------------------
+DROP TABLE IF EXISTS `cate`;
+CREATE TABLE `cate` (
+  `aid` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '分类id',
+  `cname` varchar(200) NOT NULL DEFAULT '' COMMENT '分类名称',
+  `cdesc` varchar(200) NOT NULL DEFAULT '' COMMENT '分类描述',
+  `isdel` int(11) DEFAULT '0' COMMENT '是否删除{0:正常, 1:删除}',
+  `addtime` int(11) NOT NULL DEFAULT '0' COMMENT '添加时间',
+  PRIMARY KEY (`aid`)
+  ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='接口分类表';
+
+-- ----------------------------
 -- Table structure for `user`
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
