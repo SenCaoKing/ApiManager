@@ -64,14 +64,14 @@
 
         </ul>
     </div>
-    <form action="?act=api " method="post">
-
-
-        <div style="float: right; margin-right: 20px;">
-            <input type="hidden" value="" name="aid">
-            <button class="btn btn-success">新建接口</button>
-        </div>
-
+    <form action="?act=api&tag=<?php echo $_GET['tag'];?>&op=add" method="post">
+        <?php if(is_supper()){ ?>
+            <!-- 只有超级管理员才可以添加接口 -->
+            <div style="float: right; margin-right: 20px;">
+                <input type="hidden" value="<?php echo $_GET['tag']?>" name="aid">
+                <button class="btn btn-success">新建接口</button>
+            </div>
+        <?php } ?>
     </form>
 <?php } ?>
 

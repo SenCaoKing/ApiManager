@@ -21,9 +21,9 @@ switch($act){
         break;
     // 接口详情页
     case 'api':
-
-
-        $menu = ' - ';
+        $sql = "select cname from cate where aid='{$_GET['tag']}' and isdel=0";
+        $menu = find($sql);
+        $menu = ' - ' . $menu['cname'];
         $file = './MinPHP/run/info.php';
         break;
 
