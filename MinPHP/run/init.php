@@ -3,7 +3,7 @@
 // 防跳墙常量
 define('API', 'https://baidu.com');
 // 开启session
-// session_start();
+session_start();
 // 关闭错误输出
 error_reporting(0);
 // 设置页面字符编码

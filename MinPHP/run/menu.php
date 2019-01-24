@@ -1,39 +1,39 @@
 <?php defined('API') or exit('https://baidu.com');?>
 <!-- 导航 -->
-
-
-
-<div class="form-group">
-    <input type="text" class="form-control" id="searchcate" onkeyup="" placeholder="search here">
-</div>
-<div class="list">
-    <ul class="list-unstyled">
-
-        <form action="?act=cate" method="post">
-            <li class="menu" id="info">
-                <a href="">
-                    会员登录
-                </a>
-                <br>
-
-                <br>
-
-
-                <div style="float: right; margin-right: 16px;">
-                    &nbsp;<button class="btn btn-danger btn-xs" name="op" value="delete" onclick="javascript:return confirm('您确认要删除吗？')">delete</button>
-                    &nbsp;<button class="btn btn-info btn-xs" name="op" value="edit">edit</button>
-                </div>
-                <br>
-
-                <hr>
-            </li>
-
-            <span class="keyword" id="">111</span>
-
-        </form>
-
-    </ul>
-</div>
+<?php if($act != 'api'){
+    $list = select('select * from cate where isdel=0 order by addtime desc');
+?>
+    <div class="form-group">
+        <input type="text" class="form-control" id="searchcate" onkeyup="  " placeholder="search here">
+    </div>
+    <div class="list">
+        <ul class="list-unstyled">
+            <?php foreach($list as $v){ ?>
+            <form action="?act=cate" method="post">
+                <li class="menu" id="info_<?php echo $v['aid'];?>">
+                    <a href="<?php echo U(array('act' => 'api', 'tag' => $v['aid']));?>">
+                        <?php echo $v['cname'] ?>
+                    </a>
+                    <br>
+                    <?php echo '&nbsp;&nbsp;&nbsp;&nbsp;' . $v['cdesc'];echo "<input type='hidden' name='aid' value='{$v['aid']}'>";?>
+                    <br>
+                    <?php if(is_supper()){ ?>
+                        <!-- 只有超级管理员才可以对分类进行操作 -->
+                        <div style="float: right; margin-right: 16px;">
+                            &nbsp;<button class="btn btn-danger btn-xs" name="op" value="delete" onclick="javascript:return confirm('您确认要删除吗？')">delete</button>
+                            &nbsp;<button class="btn btn-info btn-xs" name="op" value="edit">edit</button>
+                        </div>
+                        <br>
+                    <?php } ?>
+                    <hr>
+                </li>
+                <!-- 接口分类关键字(js通过此关键字进行模糊查找) start -->
+                <span class="keyword" id="<?php echo $v['aid'];?>"><?php echo $v['cdesc'] . '<|-|>' . $v['cname'];?></span>
+                <!-- 接口分类关键字(js通过此关键字进行模糊查找) end -->
+            </form>
+            <?php } ?>
+        </ul>
+    </div>
 
 <form action="?act=cate" method="post">
 
@@ -43,7 +43,7 @@
     </div>
 
 </form>
-
+<?php } ?>
 
 
 <div class="form-group">

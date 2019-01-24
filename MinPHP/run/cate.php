@@ -1,9 +1,10 @@
 <?php defined('API') or exit('https://baidu.com');?>
 <!-- 接口分类管理 -->
 <?php
-
+if(!is_supper()){ die('只有超级管理员才可对分类进行操作'); }
 // 操作类型(add, delete, edit)
 $op = I($_POST['op']);
+var_dump($op);
 // 是否执行操作(如果为do的话，则为执行添加，删除，编辑操作)
 $type= I($_GET['type']);
 switch($op){
@@ -27,10 +28,15 @@ switch($op){
             }
         }
         break;
+    case 'edit':
+        $_VAL = I($_POST);
 
+        dump($_VAL);
+        break;
 }
 
 ?>
+<?php if($op == 'add'){ ?>
 <div style="border: 1px solid #ddd;">
     <div style="background: #f5f5f5; padding: 20px; position: relative;">
         <h4>添加分类</h4>
@@ -47,3 +53,4 @@ switch($op){
         </div>
     </div>
 </div>
+<?php } ?>
