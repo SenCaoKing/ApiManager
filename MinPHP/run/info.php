@@ -41,6 +41,7 @@ if($op == 'add'){
             echo '<div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> 添加失败</div>';
         }
     }
+    // 修改接口
 }
 ?>
 <!-- 添加接口 start -->
@@ -87,7 +88,7 @@ if($op == 'add'){
                             <th class="col-md-2">缺省值</th>
                             <th class="col-md-4">描述</th>
                             <th class="col-md-1">
-                                <button type="button" class="btn btn-success" onclick="  ">新增</button>
+                                <button type="button" class="btn btn-success" onclick="add()">新增</button>
                             </th>
                         </tr>
                         </thead>
@@ -104,7 +105,7 @@ if($op == 'add'){
                             </td>
                             <td><input type="text" class="form-control" name="p[default][]" placeholder="缺省值"></td>
                             <td><textarea name="p[des][]" rows="1" class="form-control" placeholder="描述"></textarea></td>
-                            <td><button type="button" class="btn btn-danger" onclick="  ">删除</button></td>
+                            <td><button type="button" class="btn btn-danger" onclick="del(this)">删除</button></td>
                         </tr>
                         </tbody>
                     </table>
@@ -123,7 +124,28 @@ if($op == 'add'){
     </div>
 </div>
 <script type="text/javascript">
-
+    function add(){
+        var $html = '<tr>' +
+                '<td class="form-group has-error"><input type="text" class="form-control has-error" name="p[name][]" placeholder="参数名" required="required"></td>' +
+            '<td>' +
+            '<select class="form-control" name="p[type][]">' +
+            '<option value="Y">Y</option> <option value="N">N</option>' +
+            '</select>' +
+            '</td>' +
+            '<td>' +
+            '<input type="text" class="form-control" name="p[default][]" placeholder="缺省值"></td>' +
+            '<td>' +
+            '<textarea name="p[des][]" rows="1" class="form-control" placeholder="描述"></textarea>' +
+            '</td>' +
+            '<td>' +
+            '<button type="button" class="btn btn-danger" onclick="del(this)">删除</button>' +
+            '</td>' +
+            '</tr>';
+        $('#parameter').append($html);
+    }
+    function del(obj){
+        $(obj).parents('tr').remove();
+    }
 </script>
 <!-- 添加接口 end -->
 
