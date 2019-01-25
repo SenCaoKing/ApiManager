@@ -42,111 +42,120 @@ if($op == 'add'){
         }
     }
     // 修改接口
+}else if($op == 'edit'){
+
+    var_dump($op);
 }
 ?>
-<!-- 添加接口 start -->
-<div style="border: 1px solid #ddd;">
-    <div style="background: #f5f5f5; padding: 20px; position: relative;">
-        <h4>添加接口<span style="font-size: 12px; padding-left: 20px; color: #a94442;">注:"此色"边框为必填项</span></h4>
-        <div style="margin-left: 20px;">
-            <form action="?act=api&tag=<?php echo $_GET['tag'];?>&type=do&op=add" method="post">
-                <h5>基本信息</h5>
-                <div class="form-group has-error">
-                    <div class="input-group">
-                        <div class="input-group-addon">接口编号</div>
-                        <input type="text" class="form-control" name="num" placeholder="接口编号" required="required">
+<?php if($op == 'add'){ ?>
+    <!-- 添加接口 start -->
+    <div style="border: 1px solid #ddd;">
+        <div style="background: #f5f5f5; padding: 20px; position: relative;">
+            <h4>添加接口<span style="font-size: 12px; padding-left: 20px; color: #a94442;">注:"此色"边框为必填项</span></h4>
+            <div style="margin-left: 20px;">
+                <form action="?act=api&tag=<?php echo $_GET['tag'];?>&type=do&op=add" method="post">
+                    <h5>基本信息</h5>
+                    <div class="form-group has-error">
+                        <div class="input-group">
+                            <div class="input-group-addon">接口编号</div>
+                            <input type="text" class="form-control" name="num" placeholder="接口编号" required="required">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group has-error">
-                    <div class="input-group">
-                        <div class="input-group-addon">接口名称</div>
-                        <input type="text" class="form-control" name="name" placeholder="接口名称" required="required">
+                    <div class="form-group has-error">
+                        <div class="input-group">
+                            <div class="input-group-addon">接口名称</div>
+                            <input type="text" class="form-control" name="name" placeholder="接口名称" required="required">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group has-error">
-                    <div class="input-group">
-                        <div class="input-group-addon">请求地址</div>
-                        <input type="text" class="form-control" name="url" placeholder="请求地址" required="required">
+                    <div class="form-group has-error">
+                        <div class="input-group">
+                            <div class="input-group-addon">请求地址</div>
+                            <input type="text" class="form-control" name="url" placeholder="请求地址" required="required">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <textarea name="des" class="form-control" placeholder="描述"></textarea>
-                </div>
-                <div class="form-group" required="required">
-                    <select class="form-control" name="type">
-                        <option value="GET">GET</option>
-                        <option value="POST">POST</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <h5>请求参数</h5>
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th class="col-md-3">参数名</th>
-                            <th class="col-md-2">必传</th>
-                            <th class="col-md-2">缺省值</th>
-                            <th class="col-md-4">描述</th>
-                            <th class="col-md-1">
-                                <button type="button" class="btn btn-success" onclick="add()">新增</button>
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody id="parameter">
-                        <tr>
-                            <td class="form-group has-error">
-                                <input type="text" class="form-control" name="p[name][]" placeholder="参数名" required="required">
-                            </td>
-                            <td>
-                                <select class="form-control" name="p[type][]">
-                                    <option value="Y">Y</option>
-                                    <option value="N">N</option>
-                                </select>
-                            </td>
-                            <td><input type="text" class="form-control" name="p[default][]" placeholder="缺省值"></td>
-                            <td><textarea name="p[des][]" rows="1" class="form-control" placeholder="描述"></textarea></td>
-                            <td><button type="button" class="btn btn-danger" onclick="del(this)">删除</button></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="form-group">
-                    <h5>返回结果</h5>
-                    <textarea name="re" rows="3" class="form-control" placeholder="返回结果"></textarea>
-                </div>
-                <div class="form-group">
-                    <h5>备注</h5>
-                    <textarea name="memo" rows="3" class="form-control" placeholder="备注"></textarea>
-                </div>
-                <button class="btn btn-success">Submit</button>
-            </form>
+                    <div class="form-group">
+                        <textarea name="des" class="form-control" placeholder="描述"></textarea>
+                    </div>
+                    <div class="form-group" required="required">
+                        <select class="form-control" name="type">
+                            <option value="GET">GET</option>
+                            <option value="POST">POST</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <h5>请求参数</h5>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th class="col-md-3">参数名</th>
+                                <th class="col-md-2">必传</th>
+                                <th class="col-md-2">缺省值</th>
+                                <th class="col-md-4">描述</th>
+                                <th class="col-md-1">
+                                    <button type="button" class="btn btn-success" onclick="add()">新增</button>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody id="parameter">
+                            <tr>
+                                <td class="form-group has-error">
+                                    <input type="text" class="form-control" name="p[name][]" placeholder="参数名" required="required">
+                                </td>
+                                <td>
+                                    <select class="form-control" name="p[type][]">
+                                        <option value="Y">Y</option>
+                                        <option value="N">N</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" class="form-control" name="p[default][]" placeholder="缺省值"></td>
+                                <td><textarea name="p[des][]" rows="1" class="form-control" placeholder="描述"></textarea></td>
+                                <td><button type="button" class="btn btn-danger" onclick="del(this)">删除</button></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="form-group">
+                        <h5>返回结果</h5>
+                        <textarea name="re" rows="3" class="form-control" placeholder="返回结果"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <h5>备注</h5>
+                        <textarea name="memo" rows="3" class="form-control" placeholder="备注"></textarea>
+                    </div>
+                    <button class="btn btn-success">Submit</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-<script type="text/javascript">
-    function add(){
-        var $html = '<tr>' +
+    <script type="text/javascript">
+        function add(){
+            var $html = '<tr>' +
                 '<td class="form-group has-error"><input type="text" class="form-control has-error" name="p[name][]" placeholder="参数名" required="required"></td>' +
-            '<td>' +
-            '<select class="form-control" name="p[type][]">' +
-            '<option value="Y">Y</option> <option value="N">N</option>' +
-            '</select>' +
-            '</td>' +
-            '<td>' +
-            '<input type="text" class="form-control" name="p[default][]" placeholder="缺省值"></td>' +
-            '<td>' +
-            '<textarea name="p[des][]" rows="1" class="form-control" placeholder="描述"></textarea>' +
-            '</td>' +
-            '<td>' +
-            '<button type="button" class="btn btn-danger" onclick="del(this)">删除</button>' +
-            '</td>' +
-            '</tr>';
-        $('#parameter').append($html);
-    }
-    function del(obj){
-        $(obj).parents('tr').remove();
-    }
-</script>
-<!-- 添加接口 end -->
+                '<td>' +
+                '<select class="form-control" name="p[type][]">' +
+                '<option value="Y">Y</option> <option value="N">N</option>' +
+                '</select>' +
+                '</td>' +
+                '<td>' +
+                '<input type="text" class="form-control" name="p[default][]" placeholder="缺省值"></td>' +
+                '<td>' +
+                '<textarea name="p[des][]" rows="1" class="form-control" placeholder="描述"></textarea>' +
+                '</td>' +
+                '<td>' +
+                '<button type="button" class="btn btn-danger" onclick="del(this)">删除</button>' +
+                '</td>' +
+                '</tr>';
+            $('#parameter').append($html);
+        }
+        function del(obj){
+            $(obj).parents('tr').remove();
+        }
+    </script>
+    <!-- 添加接口 end -->
+
+<?php }else if($op == 'edit'){ ?>
+    <div>34567</div>
+<?php } ?>
+
 
 <!-- 接口详情列表与接口管理 end -->

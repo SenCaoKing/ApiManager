@@ -43,21 +43,23 @@
             </div>
         <?php } ?>
     </form>
-<?php } else { ?>
-
-
+<?php } else {
+    $sql = "select * from api where aid = '{$_GET['tag']}' and isdel='0' order by ord desc, id desc";
+    $list = select($sql);?>
     <div class="form-group">
         <input type="text" class="form-control" id="searchapi" placeholder="search here" onkeyup="  ">
     </div>
     <div class="list">
         <ul class="list-unstyled" style="padding: 10px;">
+            <?php foreach($list as $v){ ?>
+                <li class="menu" id="api_<?php echo md5($v['id']);?>">
+                    <a href="<?php echo U(array('act' => 'api', 'tag' => $_GET['tag']));?>#info_api_<?php echo md5($v['id']);?>" id="<?php echo 'menu_' . md5($v['id]']);?>">
+                        <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                        <?php echo $v['name'];?>
+                    </a>
+                </li>
+            <?php } ?>
 
-            <li class="menu" id="api ">
-                <a href=" ">
-                    <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-
-                </a>
-            </li>
 
             <span class="keyword" id=" "></span>
 
