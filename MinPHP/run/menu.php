@@ -4,7 +4,7 @@
     $list = select('select * from cate where isdel=0 order by addtime desc');
 ?>
     <div class="form-group">
-        <input type="text" class="form-control" id="searchcate" onkeyup="  " placeholder="search here">
+        <input type="text" class="form-control" id="searchcate" onkeyup="search('cate', this)" placeholder="search here">
     </div>
     <div class="list">
         <ul class="list-unstyled">
@@ -12,7 +12,7 @@
             <form action="?act=cate" method="post">
                 <li class="menu" id="info_<?php echo $v['aid'];?>">
                     <a href="<?php echo U(array('act' => 'api', 'tag' => $v['aid']));?>">
-                        <?php echo $v['cname'] ?>
+                        <?php echo $v['cname'] ?>1
                     </a>
                     <br>
                     <?php echo '&nbsp;&nbsp;&nbsp;&nbsp;' . $v['cdesc'];echo "<input type='hidden' name='aid' value='{$v['aid']}'>";?>
@@ -58,12 +58,10 @@
                         <?php echo $v['name'];?>
                     </a>
                 </li>
+                <!-- 接口关键字(js通过此关键字进行模糊查找) start -->
+                <span class="keyword" id="<?php echo md5($v['id']);?>"><?php echo $v['name'].'<|-|>'.$v['num'].'<|-|>'.$v['des'].'<|-|>'.$v['memo'].'<|-|>'.$v['parameter'].'<|-|>'.$v['url'].'<|-|>'.$v['type'].'<|-|>'.strtolower($v['type']);?></span>
+                <!-- 接口关键字(js通过此关键字进行模糊查找) end -->
             <?php } ?>
-
-
-            <span class="keyword" id=" "></span>
-
-
         </ul>
     </div>
     <form action="?act=api&tag=<?php echo $_GET['tag'];?>&op=add" method="post">
@@ -76,8 +74,39 @@
         <?php } ?>
     </form>
 <?php } ?>
-
-<!-- jquery  -->
+<!-- jquery模糊查询 start -->
 <script type="text/javascript">
-
+    function search(type, obj){
+        var $find = $.trim($(obj).val()); // 得到搜索内容
+        if(type == 'cate'){ // 对接口分类进行搜索操作
+            if($find != ''){
+                $(".menu").hide();
+                // 找到符合关键字的对象
+                var $keywordobj = $(".keyword:contains('"+$find+"')");
+                $keywordobj.each(function(i) {
+                    var menu_id = $($keywordobj[[i]]).attr('id');
+                    $("#info_"+menu_id).show();
+                });
+            }else{
+                $(".menu").show(); // 在没有搜索内容的情况下，左侧导航菜单 全部 显示
+            }
+        }else if(type == 'api'){ // 对接口进行搜索操作
+            if($find != ''){
+                $(".menu").hide(); // 左侧导航菜单隐藏
+                $(".info_api").hide();
+                // 找到符合关键字的对象
+                var $keywordobj = $(".keyword:contains('"+$find+"')");
+                $keywordobj.each(function(i) {
+                    var menu_id = $($keywordobj[i]).attr('id');
+                    $("#api_"+menu_id).show(); // 左侧导航菜单 部分隐藏
+                    $("#info_api_"+menu_id).show(); // 接口详情 部分 隐藏
+                });
+            }else{
+                $(".menu").show(); // 在没有搜索内容的情况下，左侧导航菜单 全部 显示
+                $(".info_api").show(); // 在没有搜索内容的情况下，接口详情 全部 显示
+            }
+        }
+    }
 </script>
+<!-- jquery模糊查询 end -->
+<!-- end -->
