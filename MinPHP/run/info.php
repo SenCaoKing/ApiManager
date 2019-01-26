@@ -50,9 +50,9 @@ if($op == 'add'){
         $num = htmlspecialchars($_POST['num'], ENT_QUOTES); // 接口编号(为了把编号的前导0过滤掉。不用I方法过滤)
         $name = $_VAL['name']; // 接口名称
         $memo = $_VAL['memo']; // 备注
-        $memo = $_VAL['des']; // 描述
-        $memo = $_VAL['type']; // 请求方式
-        $memo = $_VAL['url']; // 请求地址
+        $des = $_VAL['des']; // 描述
+        $type = $_VAL['type']; // 请求方式
+        $url = $_VAL['url']; // 请求地址
 
         $parameter = serialize($_VAL['p']);
         $re = $_VAL['re']; // 返回值
@@ -332,7 +332,7 @@ if($op == 'add'){
                 <div style="background: #f5f5f5; padding: 20px; position: relative;">
                     <div class="textshadow" style="position: absolute; right: 0; top:  4px; right: 8px;">
                         最后修改者：<?php echo $v['login_name'];?> &nbsp;<?php echo date('Y-m-d H:i:s', $v['lasttime']);?>&nbsp;
-                        <button class="btn btn-danger btn-xs" onclick=" ">delete</button>&nbsp;
+                        <button class="btn btn-danger btn-xs" onclick="deleteApi(<?php echo $v['id'];?>, <?php echo md5($v['id']);?>)">delete</button>&nbsp;
                         <button class="btn btn-info btn-xs" onclick="editApi('<?php echo U(array('act' => 'api', 'op' => 'edit', 'id' => $v['id'], 'tag' => $_GET['tag']));?>')">edit</button>&nbsp;
                     </div>
                     <h4 class="textshadow"><?php echo $v['name'];?></h4>
@@ -397,6 +397,18 @@ if($op == 'add'){
         </div>
     <?php } ?>
     <script type="text/javascript">
+        // 删除某个接口
+        var $url = '<?php echo U(array('act' => 'ajax', 'op' => 'apiDelete'));?>';
+        function deleteApi(apiId, divId){
+            if(confirm('是否确认删除此接口?')){
+                $.post($url, {id:apiId}, function(data){
+                    if(data == '1'){
+                        $('#api_'+divId).remove(); // 删除左侧菜单
+                        $('#info_api_'+divId).remove(); // 删除接口详情
+                    }
+                });
+            }
+        }
         // 编辑某个接口
         function editApi(gourl){
             window.location.href = gourl;

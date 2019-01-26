@@ -26,11 +26,13 @@ switch($act){
         $menu = ' - ' . $menu['cname'];
         $file = './MinPHP/run/info.php';
         break;
-
+    // ajax请求
+    case 'ajax':
+        die(include('./MinPHP/run/ajax.php'));
+        break;
     default:
         $menu = ' - 欢迎';
         $file = './MinPHP/run/hello.php';
+        break;
 }
 include './MinPHP/run/main.php';
-
-
