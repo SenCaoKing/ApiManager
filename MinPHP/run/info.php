@@ -43,8 +43,17 @@ if($op == 'add'){
     }
     // 修改接口
 }else if($op == 'edit'){
+    if(!is_supper()){ die('只有超级管理员才可对接口进行操作'); }
 
-    var_dump($op);
+    // 此分类下的接口列表
+}else{
+    $sql = "select api.id,aid,num,url,name,des,parameter,memo,re,lasttime,lastuid,type,login_name 
+    from api 
+    left join user 
+    on api.lastuid=user.id 
+    where aid='{$_GET['tag']}' and api.isdel=0 
+    order by ord desc,api.id desc";
+    $list = select($sql);
 }
 ?>
 <?php if($op == 'add'){ ?>
@@ -152,10 +161,83 @@ if($op == 'add'){
         }
     </script>
     <!-- 添加接口 end -->
-
 <?php }else if($op == 'edit'){ ?>
-    <div>34567</div>
+    <!-- 修改接口 start -->
+
+    <!-- 修改接口 end -->
+<?php }else{ ?>
+    <!-- 接口详细列表 start -->
+    <?php if(count($list)){ ?>
+        <?php foreach($list as $v){ ?>
+            <div class="info_api" style="border: 1px solid #ddd; margin-bottom: 20px;" id="info_api_<?php echo md5($v['id']);?>">
+                <div style="background: #f5f5f5; padding: 20px; position: relative;">
+                    <div class="textshadow" style="position: absolute; right: 0; top:  4px; right: 8px;">
+                        最后修改者：<?php echo $v['login_name'];?> &nbsp;<?php echo date('Y-m-d H:i:s', $v['lasttime']);?>&nbsp;
+                        <button class="btn btn-danger btn-xs" onclick=" ">delete</button>&nbsp;
+                        <button class="btn btn-info btn-xs" onclick=" ">edit</button>&nbsp;
+                    </div>
+                    <h4 class="textshadow"><?php echo $v['name'];?></h4>
+                    <p>
+                        <b>编号&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red;"><?php echo $v['num'];?></span></b>
+                    </p>
+                    <div>
+                        <kbd><?php echo $v['type'];?></kbd> - <kbd><?php echo $v['url'];?></kbd>
+                    </div>
+                </div>
+                <?php if(!empty($v['des'])){ ?>
+                    <div class="info">
+                        <?php echo $v['des'];?>
+                    </div>
+                <?php } ?>
+                <div style="background: #ffffff; padding: 20px;">
+                    <h5 class="textshadow">请求参数</h5>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="col-md-3">参数名</th>
+                            <th class="col-md-2">必传</th>
+                            <th class="col-md-2">缺省值</th>
+                            <th class="col-md-5">描述</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        $parameter = unserialize($v['parameter']);
+                        $pnum = count($parameter['name']);
+                        ?>
+                        <?php for($i=0; $i<$pnum; $i++){ ?>
+                            <tr>
+                                <td><?php echo $parameter['name'][$i];?></td>
+                                <td><?php if($parameter['type'][$i] == 'Y'){echo '<span style="color: red;">Y</span>';}else{echo '<span style="color: green;">N</span>';}?></td>
+                                <td><?php echo $parameter['default'][$i];?></td>
+                                <td><?php echo $parameter['des'][$i];?></td>
+                            </tr>
+                        <?php } ?>
+
+                        </tbody>
+                    </table>
+                </div>
+                <?php if(!empty($v['re'])){ ?>
+                    <div style="background: #ffffff; padding: 20px;">
+                        <h5 class="textshadow">返回值</h5>
+                        <pre><?php echo $v['re'];?></pre>
+                    </div>
+                <?php } ?>
+                <?php if(!empty($v['memo'])){ ?>
+                    <div style="background: #ffffff; padding: 20px;">
+                        <div class="textshadow">备注</div>
+                        <pre style="background: honeydew;"><?php echo $v['memo'];?></pre>
+                    </div>
+                <?php } ?>
+            </div>
+            <!-- 接口详细列表 end -->
+        <?php } ?>
+    <?php } else { ?>
+        <div style="font-size: 16px;">
+            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> 此分类下还没有任何接口
+        </div>
+    <?php } ?>
+    <script type="text/javascript">
+    </script>
 <?php } ?>
-
-
 <!-- 接口详情列表与接口管理 end -->

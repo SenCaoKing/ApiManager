@@ -12,7 +12,7 @@
             <form action="?act=cate" method="post">
                 <li class="menu" id="info_<?php echo $v['aid'];?>">
                     <a href="<?php echo U(array('act' => 'api', 'tag' => $v['aid']));?>">
-                        <?php echo $v['cname'] ?>1
+                        <?php echo $v['cname'] ?>
                     </a>
                     <br>
                     <?php echo '&nbsp;&nbsp;&nbsp;&nbsp;' . $v['cdesc'];echo "<input type='hidden' name='aid' value='{$v['aid']}'>";?>
@@ -47,7 +47,7 @@
     $sql = "select * from api where aid = '{$_GET['tag']}' and isdel='0' order by ord desc, id desc";
     $list = select($sql);?>
     <div class="form-group">
-        <input type="text" class="form-control" id="searchapi" placeholder="search here" onkeyup="  ">
+        <input type="text" class="form-control" id="searchapi" placeholder="search here" onkeyup="search('api', this)">
     </div>
     <div class="list">
         <ul class="list-unstyled" style="padding: 10px;">
