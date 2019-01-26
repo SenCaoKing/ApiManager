@@ -1,6 +1,6 @@
 <?php defined('API') or exit('https://baidu.com');?>
 <!-- 导航 -->
-<?php if($act != 'api'){
+<?php if($act != 'api' && $act != 'sort'){
     $list = select('select * from cate where isdel=0 order by addtime desc');
 ?>
     <div class="form-group">
@@ -75,7 +75,7 @@
     </form>
 <?php } ?>
 <!-- jquery模糊查询 start -->
-<script type="text/javascript">
+<script>
     function search(type, obj){
         var $find = $.trim($(obj).val()); // 得到搜索内容
         if(type == 'cate'){ // 对接口分类进行搜索操作

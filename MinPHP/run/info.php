@@ -28,11 +28,11 @@ if($op == 'add'){
         $sql = "insert into api (
         `aid`,`num`,`name`,`des`,`url`,
         `type`,`parameter`,`re`,`lasttime`,
-        `lastuid`,`isdel`,`memo`
+        `lastuid`,`isdel`,`memo`,`ord`
         ) values (
         '{$aid}','{$num}','{$name}','{$des}','{$url}',
         '{$type}','{$parameter}','{$re}','{$lasttime}',
-        '{$lastuid}','{$isdel}','{$memo}'
+        '{$lastuid}','{$isdel}','{$memo}','999'
         )";
         $re = insert($sql);
         if($re){
@@ -299,7 +299,7 @@ if($op == 'add'){
             </div>
         </div>
     </div>
-    <script type="text/javascript">
+    <script>
         function add(){
             var $html = '<tr>' +
                 '<td class="form-group has-error"><input type="text" class="form-control has-error" name="p[name][]" placeholder="参数名" required="required"></td>' +
