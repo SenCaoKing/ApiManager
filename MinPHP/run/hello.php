@@ -10,7 +10,7 @@
         </pre>
     </div>
     <div style="font-size: 12px; position:absolute; bottom: 0; right: 20px; height: 20px; text-align: right;">
-        Sen | github: <a href="https://github.com/SenCaoKing/ApiManager.git">https://github.com/SenCaoKing/ApiManager.git</a>
+        Sen | github: <a target="_blank" href="https://github.com/SenCaoKing/ApiManager.git">https://github.com/SenCaoKing/ApiManager.git</a>
     </div>
 </div>
 <!-- 欢迎页 end -->
