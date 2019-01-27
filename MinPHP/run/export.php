@@ -32,7 +32,7 @@ function file_get_contents_fixed($url)
     return $res;
 }
 // 分类详情页的内容
-$content = file_get_contents($url);
+$content = file_get_contents_fixed($url);
 // ========== js与css静态文件替换 start ==========
 // css文件替换--start
 $pattern = '/<link href="(.+?\.css)" rel="stylesheet">/is';
@@ -58,7 +58,7 @@ $content = preg_replace_callback($pattern, 'getJSFileContent', $content);
 // ========== 页面锚点连接替换 start =============
 $pattern = '/(href=[\"\']).*tag=\d#(\w+)/is';
 function changeLink($matches){
-    return "#{$matches[1]}{$matches[2]}'";
+    return "{$matches[1]}#{$matches[2]}'";
     }
 $content = preg_replace_callback($pattern, 'changeLink', $content);
 $tag = C('version->no');
