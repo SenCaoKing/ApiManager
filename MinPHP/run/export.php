@@ -56,7 +56,7 @@ $content = preg_replace_callback($pattern, 'getJSFileContent', $content);
 // ========== js与css静态文件替换 end ============
 
 // ========== 页面锚点连接替换 start =============
-$pattern = '/(href=[\"\']).*tag=\d#(\w+)/';
+$pattern = '/(href=[\"\']).*tag=\d#(\w+)/is';
 function changeLink($matches){
     return "#{$matches[1]}{$matches[2]}'";
     }
