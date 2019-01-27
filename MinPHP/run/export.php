@@ -41,13 +41,14 @@ function changeLink($matches){
     return "<a href='#{$matches[1]}'>$matches[2]</a>";
 }
 $content = preg_replace_callback($pattern, 'changeLink', $content);
+$tag = C('version->no');
 // ========== 页面锚点连接替换 end ===============
 $headhtml =<<<START
 <!--
 ===============================================
 导出时间:{$version}
 ===============================================
-此文档由 API Manager 导出
+此文档由 API Manager {$tag} 导出
 ===============================================
 github: https://github.com/SenCaoKing/ApiManager.git
 ===============================================

@@ -398,6 +398,11 @@ if($op == 'add'){
                 <?php } ?>
             </div>
             <!-- 接口详细列表 end -->
+            <!-- 接口详情返回顶部按钮 start -->
+            <div id="gotop" onclick="goTop()" style="z-index: 999999; display: none; color: #E6E6E6; cursor: pointer; width: 34px; height: 34px; border: #ddd 1px solid; line-height: 35px; text-align: center; background: rgba(91, 192, 222, 0.8); position: fixed; right: 1px; top: 200px; border-radius: 50%;">
+                T
+            </div>
+            <!-- 接口详情返回顶部按钮 end -->
         <?php } ?>
     <?php } else { ?>
         <div style="font-size: 16px;">
@@ -421,6 +426,22 @@ if($op == 'add'){
         function editApi(gourl){
             window.location.href = gourl;
         }
+
+        // 返回顶部
+        function goTop(){
+            $('#mainwindow').animate(
+                { scrollTop: '0px' }, 200
+            );
+        }
+
+        // 检测滚动条，显示返回顶部按钮
+        document.getElementById('mainwindow').onscroll = function() {
+            if(document.getElementById('mainwindow').scrollTop > 100){
+                document.getElementById('gotop').style.display = 'block';
+                console.log('show');
+            }
+            console.log(document.getElementById('mainwindow').scrollTop);
+        };
     </script>
 <?php } ?>
 <!-- 接口详情列表与接口管理 end -->
