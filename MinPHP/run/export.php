@@ -56,13 +56,13 @@ $content = preg_replace_callback($pattern, 'getJSFileContent', $content);
 // ========== js与css静态文件替换 end ============
 
 // ========== 页面锚点连接替换 start =============
-$pattern = '/(href=[\"\']).*tag=\d#(\w+)/is';
+$pattern = '/href=".+?*tag=\d#(\w+)"/i';
 function changeLink($matches){
-    return "{$matches[1]}#{$matches[2]}";
-    }
+    return "href=#{$matches[1]}";
+}
 $content = preg_replace_callback($pattern, 'changeLink', $content);
-$tag = C('version->no');
 // ========== 页面锚点连接替换 end ===============
+$tag = C('version->no');
 $headhtml =<<<START
 <!--
 ===============================================
