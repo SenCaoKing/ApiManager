@@ -9,9 +9,19 @@
 * 部署维护方便
 
 项目部署
-1. 在MySQL中新建api数据库，并执行 db.sql文件
-2. 在 ./MinPHP/core/run/config.php 配置文件中修改数据库连接信息
-3. 把项目部署到Apache或Nginx中即可
+* 在MySQL中新建api数据库，并执行 db.sql文件
+* 在 ./MinPHP/core/run/config.php 配置文件中修改数据库连接信息
+```php
+// 数据库连接配置
+'db' => array(
+    'host'    => 'localhost', // 数据库地址
+    'dbname'  => 'api',   // 数据库名
+    'user'    => 'root',      // 账号
+    'passwd'  => 'root',       // 密码
+    'linktype' => 'mysqli', // 数据库连接类型 支持mysqli与pdo两种类型
+    ),
+```
+* 把项目部署到Apache或Nginx中即可
 
 使用说明
 1. 当前版本(v1.1)只做了简单权限控制，一是有权限，二是无权限。
