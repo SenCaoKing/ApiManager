@@ -135,7 +135,7 @@ function update($sql){
             return M()->query($sql);
             break;
     }
-    
+
 }
 
 // 设置和获取session值
@@ -189,7 +189,7 @@ function I($val){
         return $val;
     }else{
         if(is_numeric($val)){
-            return intval($val);
+            return $val;
         }else if(is_string($val)){
             return htmlspecialchars(trim($val), ENT_QUOTES);
         }else{
