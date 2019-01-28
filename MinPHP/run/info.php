@@ -83,6 +83,7 @@ if($op == 'add'){
         $p = array();
         for($i=0; $i<$count; $i++){
             $p[$i]['name'] = $info['parameter']['name'][$i];
+            $p[$i]['paramType'] = $info['parameter']['paramType'][$i];
             $p[$i]['type'] = $info['parameter']['type'][$i];
             $p[$i]['default'] = $info['parameter']['default'][$i];
             $p[$i]['des'] = $info['parameter']['des'][$i];
@@ -141,6 +142,7 @@ if($op == 'add'){
                             <thead>
                             <tr>
                                 <th class="col-md-3">参数名</th>
+                                <th class="col-md-2">参数类型</th>
                                 <th class="col-md-2">必传</th>
                                 <th class="col-md-2">缺省值</th>
                                 <th class="col-md-4">描述</th>
@@ -154,6 +156,7 @@ if($op == 'add'){
                                 <td class="form-group has-error">
                                     <input type="text" class="form-control" name="p[name][]" placeholder="参数名" required="required">
                                 </td>
+                                <td class="form-group has-error"><input type="text" class="form-control" name="p[paramType][]" placeholder="参数类型" required="required"></td>
                                 <td>
                                     <select class="form-control" name="p[type][]">
                                         <option value="Y">Y</option>
@@ -180,10 +183,12 @@ if($op == 'add'){
             </div>
         </div>
     </div>
-    <script type="text/javascript">
+    <script>
         function add(){
             var $html = '<tr>' +
                 '<td class="form-group has-error"><input type="text" class="form-control has-error" name="p[name][]" placeholder="参数名" required="required"></td>' +
+                '<td class="form-group has-error">' +
+                '<input type="text" class="form-control" name="p[paramType][]" placeholder="参数类型" required="required"></td>' +
                 '<td>' +
                 '<select class="form-control" name="p[type][]">' +
                 '<option value="Y">Y</option> <option value="N">N</option>' +
@@ -251,6 +256,7 @@ if($op == 'add'){
                             <thead>
                             <tr>
                                 <th class="col-md-3">参数名</th>
+                                <th class="col-md-2">参数类型</th>
                                 <th class="col-md-2">必传</th>
                                 <th class="col-md-2">缺省值</th>
                                 <th class="col-md-4">描述</th>
@@ -266,6 +272,9 @@ if($op == 'add'){
                                 <tr>
                                     <td class="form-group has-error">
                                         <input type="text" class="form-control" name="p[name][]" placeholder="参数名" value="<?php echo $info['parameter']['name'][$i];?>" required="required">
+                                    </td>
+                                    <td class="form-group has-error">
+                                        <input type="text" class="form-control" name="p[paramType][]" placeholder="参数类型" value="<?php echo $info['parameter']['paramType'][$i];?>" required="required">
                                     </td>
                                     <td>
                                         <?php
@@ -304,6 +313,9 @@ if($op == 'add'){
             var $html = '<tr>' +
                 '<td class="form-group has-error">' +
                 '<input type="text" class="form-control has-error" name="p[name][]" placeholder="参数名" required="required"></td>' +
+                '<td class="form-group has-error">' +
+                '<input type="text" class="form-control" name="p[paramType][]" placeholder="参数类型" required="required">' +
+                '</td>' +
                 '<td>' +
                 '<select class="form-control" name="p[type][]">' +
                 '<option value="Y">Y</option> <option value="N">N</option>' +
@@ -364,6 +376,7 @@ if($op == 'add'){
                         <thead>
                         <tr>
                             <th class="col-md-3">参数名</th>
+                            <th class="col-md-2">参数类型</th>
                             <th class="col-md-2">必传</th>
                             <th class="col-md-2">缺省值</th>
                             <th class="col-md-5">描述</th>
@@ -377,6 +390,7 @@ if($op == 'add'){
                         <?php for($i=0; $i<$pnum; $i++){ ?>
                             <tr>
                                 <td><?php echo $parameter['name'][$i];?></td>
+                                <td><?php echo $parameter['paramType'][$i];?></td>
                                 <td><?php if($parameter['type'][$i] == 'Y'){echo '<span style="color: red;">Y</span>';}else{echo '<span style="color: green;">N</span>';}?></td>
                                 <td><?php echo $parameter['default'][$i];?></td>
                                 <td><?php echo $parameter['des'][$i];?></td>

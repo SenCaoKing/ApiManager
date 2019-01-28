@@ -7,7 +7,7 @@ if($type == 'do'){
     $_VAL = I($_POST);
     $ord_pwd = md5($_VAL['ord_pwd']);
     $new_pwd = md5($_VAL['new_pwd']);
-    $ord_pwd2 = md5($_VAL['new_pwd2']);
+    $new_pwd2 = md5($_VAL['new_pwd2']);
     $login_name = session('login_name');
     if($new_pwd != $new_pwd2){ // 判断新密码和确认密码是否一致
         echo '<div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> 新密码和确认密码不一致</div>';
