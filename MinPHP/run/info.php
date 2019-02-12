@@ -462,7 +462,7 @@ if($op == 'add'){
                     <div class="textshadow" style="position: absolute; right: 0; top:  4px; right: 8px;">
                         最后修改者：<?php echo $v['login_name'];?> &nbsp;<?php echo date('Y-m-d H:i:s', $v['lasttime']);?>&nbsp;
                         <?php if(is_supper()){ ?>
-                            <button class="btn btn-danger btn-xs" onclick="deleteApi(<?php echo $v['id'];?>, <?php echo md5($v['id']);?>)">delete</button>&nbsp;
+                            <button class="btn btn-danger btn-xs" onclick="deleteApi(<?php echo $v['id'];?>, <?php echo md5($v['id']);?>);">delete</button>&nbsp;
                             <button class="btn btn-info btn-xs" onclick="editApi('<?php echo U(array('act' => 'api', 'op' => 'edit', 'id' => $v['id'], 'tag' => $_GET['tag']));?>')">edit</button>&nbsp;
                             <button class="btn btn-primary btn-xs" onclick="copyApi(<?php echo $v['id'];?>)">copy</button>
                         <?php } ?>
