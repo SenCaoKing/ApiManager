@@ -92,7 +92,7 @@ if($op == 'add'){
     }
     // 此分类下的接口列表
 }elseif('copy' == $op){
-    if(!is_supper()){ die('只有超级管理员才可对接口进行操作');}
+    if(!is_supper()){ die('只有超级管理员才可对接口进行操作'); }
     if(empty($id)){ $id = I($_GET['id']); }
     $name = I($_GET['name']);
     // 得到数据的详情信息 start
@@ -108,10 +108,10 @@ if($op == 'add'){
             `aid`,`num`,`name`,`des`,`url`,
             `type`,`parameter`,`re`,`lasttime`,
             `lastuid`,`isdel`,`memo`,`ord`
-            ) values (
+            )values (
             '{$info['aid']}','{$maxNum}','{$name}','{$info['des']}','{$info['url']}',
             '{$info['type']}','{$info['parameter']}','{$info['re']}','{$time}',
-            '{$lastuid}','0',{$info['memo']}','99999'
+            '{$lastuid}','0','{$info['memo']}','99999'
             )";
         $re = insert($sql);
         if($re){
